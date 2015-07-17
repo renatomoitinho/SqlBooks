@@ -2,13 +2,11 @@ package br.com.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
@@ -19,7 +17,7 @@ import java.beans.PropertyVetoException;
 
 @Configuration
 @ComponentScan(basePackages = "br.com")
-@PropertySource("classpath:jdbc.properties")
+@PropertySource({"classpath:jdbc.properties","classpath:sqls/company.xml" })
 public class ApplicationConfig {
 
     @Autowired

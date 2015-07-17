@@ -28,7 +28,13 @@ import java.sql.SQLException;
  */
 public class CompanyMapper implements RowMapper<Company> {
     @Override
-    public Company mapRow(ResultSet resultSet, int i) throws SQLException {
-        return null;
+    public Company mapRow(ResultSet rs, int i) throws SQLException {
+        Company company = new Company();
+        company.setId(rs.getInt("id"));
+        company.setAddress(rs.getString("address"));
+        company.setAge(rs.getInt("age"));
+        company.setName(rs.getString("name"));
+
+        return company;
     }
 }

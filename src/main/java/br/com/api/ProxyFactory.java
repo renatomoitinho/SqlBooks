@@ -16,38 +16,27 @@
 
 package br.com.api;
 
-import br.com.repository.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.List;
 
 /**
  * @author cin_redias
  * @since 17/07/15
  */
+
+@Component
 public class ProxyFactory {
 
-    public static class MyInvocationHandler implements InvocationHandler {
+    @Autowired
+    ApplicationInvocationHandler handler;
 
-        public Object invoke(Object proxy, Method method, Object[] args)
-                throws Throwable {
-            //do something "dynamic"
-            System.out.println( method );
-            return null;
-        }
-    }
-    public static void main(String[] args) {
-
-        InvocationHandler handler = new MyInvocationHandler();
-        CompanyRepository repository = (CompanyRepository) Proxy.newProxyInstance(
-                CompanyRepository.class.getClassLoader(),
-                new Class[]{CompanyRepository.class},
+    public <T> T getInstance(Class<T> clazz) {
+        return (T) Proxy.newProxyInstance(
+                clazz.getClassLoader(),
+                new Class[]{clazz},
                 handler);
-
-       List list = repository.getCompanyByName("hello");
-
-        System.out.println( list );
     }
+
 }

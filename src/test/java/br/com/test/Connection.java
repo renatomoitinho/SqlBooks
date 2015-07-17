@@ -3,6 +3,7 @@ package br.com.test;
 import br.com.config.ApplicationConfig;
 import br.com.model.Company;
 import br.com.repository.BaseRepository;
+import br.com.repository.CompanyRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,24 @@ public class Connection {
     @Autowired
     private BaseRepository repository;
 
+    @Autowired
+    private CompanyRepository companyRepository;
+
 //    @Before
 //    public void init() {
 //        final ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 //        repository = applicationContext.getBean("repository",Repository.class);
 //    }
 
+    @Test
+    public void other(){
+       companyRepository.getCompanyByName("Teddy").forEach(System.out::println);
+    }
+
+    @Test
+    public void otherId() {
+       companyRepository.nothing();
+    }
 
     @Test
     public void create(){
@@ -90,9 +103,8 @@ public class Connection {
     public static Company companyWrapper(ResultSet rs, int line){
         Company company = new Company();
         try {
-            company.id = rs.getInt("id");
-            company.name = rs.getString("name");
-            company.salary = rs.getLong("salary");
+            company.setId(rs.getInt("id"));
+            company.setName(rs.getString("name"));
         }catch (SQLException e) {}
         return company;
     }

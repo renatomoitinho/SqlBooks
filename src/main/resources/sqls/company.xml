@@ -5,6 +5,13 @@
     <entry key="getCompanyByName">
         <![CDATA[
             select * from company where name =:name
-        ]]]>
+        ]]>
     </entry>
+
+    <entry key="getById">
+        <![CDATA[
+            select * from company where id =:id
+        ]]>
+    </entry>
+
 </properties>

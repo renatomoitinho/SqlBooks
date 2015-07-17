@@ -30,4 +30,8 @@ import java.util.List;
 @Book("company")
 public interface CompanyRepository extends Repository<Company,CompanyMapper> {
     List<Company> getCompanyByName(String name);
+
+    Company getById(Integer id);
+
+    void nothing();
 }
