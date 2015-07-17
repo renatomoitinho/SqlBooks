@@ -14,13 +14,21 @@
  * Universo Online Inc.
  */
 
-package br.com.repository;
+package br.com.repository.wrapper;
 
-
+import br.com.model.Company;
 import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author cin_redias
- * @since 16/07/15
+ * @since 17/07/15
  */
-public interface Repository<T,M extends RowMapper<T>> {}
+public class CompanyMapper implements RowMapper<Company> {
+    @Override
+    public Company mapRow(ResultSet resultSet, int i) throws SQLException {
+        return null;
+    }
+}

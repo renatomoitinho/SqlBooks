@@ -16,7 +16,9 @@
 
 package br.com.repository;
 
+import br.com.api.Book;
 import br.com.model.Company;
+import br.com.repository.wrapper.CompanyMapper;
 
 import java.util.List;
 
@@ -26,6 +28,6 @@ import java.util.List;
  */
 
 @Book("company")
-public interface CompanyRepository extends Repository<Company> {
+public interface CompanyRepository extends Repository<Company,CompanyMapper> {
     List<Company> getCompanyByName(String name);
 }

@@ -14,7 +14,7 @@
  * Universo Online Inc.
  */
 
-package br.com.repository;
+package br.com.api;
 
 /**
  * @author cin_redias

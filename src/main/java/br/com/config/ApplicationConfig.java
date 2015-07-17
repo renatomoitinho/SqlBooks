@@ -32,6 +32,13 @@ public class ApplicationConfig {
         dataSource.setJdbcUrl(env.getProperty("jdbc.url"));//jdbc:sqlite:test.db
         dataSource.setUser(env.getProperty("jdbc.username"));
         dataSource.setPassword(env.getProperty("jdbc.password"));
+        dataSource.setAcquireIncrement(Integer.valueOf(env.getProperty("jdbc.acquireIncrement")));
+        dataSource.setMaxPoolSize(Integer.valueOf(env.getProperty("jdbc.maxPoolSize")));
+        dataSource.setMinPoolSize(Integer.valueOf(env.getProperty("jdbc.minPoolSize")));
+        dataSource.setInitialPoolSize(Integer.valueOf(env.getProperty("jdbc.initialPoolSize")));
+        dataSource.setCheckoutTimeout(Integer.valueOf(env.getProperty("jdbc.timeout")));
+        dataSource.setPreferredTestQuery(env.getProperty("jdbc.preferredTestQuery"));
+        dataSource.setIdleConnectionTestPeriod(Integer.valueOf(env.getProperty("jdbc.idleConnectionTestPeriod")));
         return dataSource;
     }
 
