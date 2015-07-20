@@ -14,26 +14,12 @@
  * Universo Online Inc.
  */
 
-package br.com.api;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Proxy;
+package br.com.api.annotations;
 
 /**
  * @author cin_redias
- * @since 17/07/15
+ * @since 20/07/15
  */
-
-@Component
-public class ProxyFactory {
-
-    @Autowired
-    ApplicationInvocationHandler handler;
-
-    public <T> T getInstance(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, handler);
-    }
-
+public @interface Param {
+    String value();
 }

@@ -14,26 +14,29 @@
  * Universo Online Inc.
  */
 
-package br.com.api;
+package br.com.test;
 
+import br.com.config.ApplicationConfig;
+import br.com.repository.CompanyRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Proxy;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author cin_redias
- * @since 17/07/15
+ * @since 20/07/15
  */
-
-@Component
-public class ProxyFactory {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {ApplicationConfig.class})
+public class CompanyRepositoryTest {
 
     @Autowired
-    ApplicationInvocationHandler handler;
+    CompanyRepository repository;
 
-    public <T> T getInstance(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, handler);
+    @Test
+    public void test() {
+        repository.getCompanyByName("Allen").forEach(System.out::println);
     }
-
 }

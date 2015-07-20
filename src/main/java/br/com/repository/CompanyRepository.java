@@ -16,7 +16,7 @@
 
 package br.com.repository;
 
-import br.com.api.Book;
+import br.com.api.annotations.*;
 import br.com.model.Company;
 import br.com.repository.wrapper.CompanyMapper;
 
@@ -27,11 +27,28 @@ import java.util.List;
  * @since 16/07/15
  */
 
-@Book("company")
-public interface CompanyRepository extends Repository<Company,CompanyMapper> {
-    List<Company> getCompanyByName(String name);
+@Queries("company")
+public interface CompanyRepository extends Repository<Company, CompanyMapper> {
 
-    Company getById(Integer id);
+    @Query("select * from company where name =:name")
+    List<Company> getCompanyByName(@Param("name") String name);
 
-    void nothing();
+    @Query("select * from company where id =:id")
+    Company getById(@Param("id") Integer id);
+
+    @Update("update company set name=:name,age=:age,address=:address,salary=:salary where id=:id")
+    void update(Company company);
+
+    @Delete("delete from company where id=:id")
+    void delete(Integer id);
+
+    @Insert("insert into company where id=:id")
+    void save(Integer id);
+
+    @Query("select count(*) from company")
+    Long count();
+
+    @BatchUpdate("update company set name=:name,age=:age,address=:address,salary=:salary where id=:id")
+    void batchUpdate(List<Company> companies);
+
 }

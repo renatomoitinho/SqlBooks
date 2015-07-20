@@ -16,24 +16,30 @@
 
 package br.com.api;
 
+import br.com.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Proxy;
+import java.util.Objects;
+import java.util.function.BiFunction;
 
 /**
  * @author cin_redias
- * @since 17/07/15
+ * @since 20/07/15
  */
-
 @Component
-public class ProxyFactory {
+public class ApplicationFunction {
 
     @Autowired
-    ApplicationInvocationHandler handler;
+    BaseRepository repository;
 
-    public <T> T getInstance(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, handler);
+    public void mapper(String methodName, String query, BiFunction function) {
+
+    }
+
+    public Object query(String query,RowMapper mapper,Object... params){
+        return repository.getTemplate().query(query,mapper,params);
     }
 
 }

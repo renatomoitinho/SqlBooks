@@ -43,11 +43,6 @@ public class Connection {
     }
 
     @Test
-    public void otherId() {
-       companyRepository.nothing();
-    }
-
-    @Test
     public void create(){
 
         String sql = "CREATE TABLE COMPANY " +

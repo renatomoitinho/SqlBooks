@@ -14,26 +14,23 @@
  * Universo Online Inc.
  */
 
-package br.com.api;
+package br.com.repository.wrapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import br.com.model.Person;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
 
-import java.lang.reflect.Proxy;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author cin_redias
  * @since 17/07/15
  */
-
-@Component
-public class ProxyFactory {
-
-    @Autowired
-    ApplicationInvocationHandler handler;
-
-    public <T> T getInstance(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, handler);
+public class PersonMapper implements RowMapper<Person> {
+    @Override
+    public Person mapRow(ResultSet resultSet, int i) throws SQLException {
+        return null;
     }
-
 }

@@ -16,24 +16,22 @@
 
 package br.com.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Proxy;
+import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 
 /**
  * @author cin_redias
- * @since 17/07/15
+ * @since 20/07/15
  */
 
-@Component
-public class ProxyFactory {
+public class ApplicationScannerComponentProvider extends ClassPathScanningCandidateComponentProvider{
 
-    @Autowired
-    ApplicationInvocationHandler handler;
-
-    public <T> T getInstance(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, handler);
+    public ApplicationScannerComponentProvider(boolean useDefaultFilters) {
+        super(useDefaultFilters);
     }
 
+    @Override
+    protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
+        return beanDefinition.getMetadata().isInterface();
+    }
 }

@@ -14,12 +14,22 @@
  * Universo Online Inc.
  */
 
-package br.com.api;
+package br.com.api.annotations;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @author cin_redias
- * @since 16/07/15
+ * @since 20/07/15
  */
-public @interface Book {
+@Documented
+@Retention(RUNTIME)
+@Target(METHOD)
+public @interface Insert {
     String value();
 }
