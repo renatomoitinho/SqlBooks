@@ -3,7 +3,7 @@
 write native jdbc and wrapper.
 
 ## it's work
-> @query for native
+> @query for native, 
 > use JsonNode (jackson-databind API)
 > unnecessary java beans
 
