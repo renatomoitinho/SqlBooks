@@ -1,8 +1,8 @@
-# jdbc book
+# SQL BOOKS
 
 write native jdbc and wrapper.
 
-## it's work
+## it's work, @query for native
 ```java
 @Queries("company") //optional book sql
 public interface CompanyRepository extends Repository<Company, CompanyMapper> {
@@ -55,3 +55,8 @@ public class CompanyRepositoryTest {
     }
 }
 ```
+
+### Tech
+* [Spring Data Jdbc] - Provides extensions to the JDBC support provided in the Spring Framework.
+
+[Spring Data Jdbc]: <http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html>
