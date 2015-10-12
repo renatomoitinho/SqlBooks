@@ -2,7 +2,11 @@
 
 write native jdbc and wrapper.
 
-## it's work, @query for native
+## it's work
+> @query for native
+> use JsonNode (jackson-databind API)
+> unnecessary java beans
+
 ```java
 @Queries("company") //optional book sql
 public interface CompanyRepository extends Repository<Company, CompanyMapper> {
@@ -11,8 +15,17 @@ public interface CompanyRepository extends Repository<Company, CompanyMapper> {
     List<Company> getCompanyByName(@Param("name") String name);
     ...
 ```
+default use JsonNode 
 
-## optional book
+```java
+public interface CompanyRepository extends Repository<JsonNode, JsonNodeMapper> {
+
+    @Query("select * from company where name =:name")
+    Optional<JsonNode> getCompanyByName(@Param("name") String name);
+    ...
+```
+
+## optional book (company.xml)
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
